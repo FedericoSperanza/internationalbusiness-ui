@@ -24,7 +24,6 @@ export class DataTableComponent implements OnInit {
   displayedColumns: string[] | undefined;
 
   tableDataSource = new MatTableDataSource();
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
@@ -37,10 +36,13 @@ export class DataTableComponent implements OnInit {
       this.apiService.getTableData(skuData).subscribe((result) => {
         if (result) {
           let restable: any = result;
-          this.tableDataSource = new MatTableDataSource(
-            restable.data.transactionList
-          );
-          this.tableDataSource.paginator = this.paginator;
+          if (restable.data.transactionList){
+            this.tableDataSource = new MatTableDataSource(
+              restable.data.transactionList
+            );
+            this.tableDataSource.paginator = this.paginator;
+          }else{
+          }       
         }
       });
     });

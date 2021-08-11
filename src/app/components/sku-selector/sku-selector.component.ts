@@ -15,6 +15,8 @@ export class SkuSelectorComponent implements OnInit {
   }
 
   loadData(){
+    if(this.skuDigit){
     this.dataService.setSkuData(this.skuDigit);
+  }
   }
 }
